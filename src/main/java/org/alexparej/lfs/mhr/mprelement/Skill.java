@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.mpr;
+package org.alexparej.lfs.mhr.mprelement;
 
 /**
  *
  * @author Alex
  */
-public enum Wind {
-    OFF,
-    WEAK,
-    STRONG
+public enum Skill {
+    BEGINNER,
+    LEARNER,
+    OK,
+    QUICK,
+    PRO
 }

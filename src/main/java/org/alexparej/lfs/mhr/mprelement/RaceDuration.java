@@ -13,16 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.mpr;
+package org.alexparej.lfs.mhr.mprelement;
 
 /**
  *
  * @author Alex
  */
-public enum Skill {
-    BEGINNER,
-    LEARNER,
-    OK,
-    QUICK,
-    PRO
+public class RaceDuration {
+
+    private int startTime;
+    private boolean practice;
+    private int laps;
+    private int hours;
+
+    public RaceDuration(int startTime, boolean practice, int laps) {
+        this.startTime = startTime;
+        this.practice = practice;
+        this.laps = laps;
+    }
+
+    public int getStartTime() {
+        return startTime;
+    }
+
+    public boolean isPractice() {
+        return practice;
+    }
+
+    public int getLaps() {
+        return laps;
+    }
+
+    public int getHours() {
+        return hours;
+    }
 }

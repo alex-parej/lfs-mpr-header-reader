@@ -13,27 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.mpr;
+package org.alexparej.lfs.mhr.processor;
+
+import java.util.Arrays;
 
 /**
  *
  * @author Alex
  */
-public class WeatherCondition {
+public class ProcessorUtil {
 
-    private Wind wind;
-    private int weatherCode;
-
-    public WeatherCondition(Wind wind, int weatherCode) {
-        this.wind = wind;
-        this.weatherCode = weatherCode;
+    public static boolean byteToBoolean(byte b) {
+        return b != 0;
     }
 
-    public Wind getWind() {
-        return wind;
+    public static String bytesToString(byte[] bytes) {
+        return new String(bytes).trim();
     }
 
-    public int getWeatherCode() {
-        return weatherCode;
+    public static String bytesToString(byte[] bytes, int offset, int length) {
+        return bytesToString(Arrays.copyOfRange(bytes, offset, offset + length));
     }
 }
