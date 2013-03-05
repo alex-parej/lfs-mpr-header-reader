@@ -15,8 +15,8 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
-import java.util.Arrays;
 import org.alexparej.lfs.mhr.mprelement.Skill;
+import org.alexparej.lfs.mhr.mprelement.WeatherCondition;
 import org.alexparej.lfs.mhr.mprelement.Wind;
 
 /**
@@ -29,11 +29,12 @@ public class MprBytesProcessor {
     private static final int OFFSET_SKILL = 21;
     private static final int OFFSET_WIND = 22;
     private static final int OFFSET_LFS_VERSION = 24;
+    private static final int OFFSET_WEATHER = 74;
     private static final int LENGTH_LFS_VERSION = 8;
     private boolean immediateStart;
     private String lfsVersion;
     private Skill skill;
-    private Wind wind;
+    private WeatherCondition weatherCondition;
     private byte[] generalInformationsBytes;
     private byte[][] resultBytes;
 
@@ -43,7 +44,8 @@ public class MprBytesProcessor {
         immediateStart = ProcessorUtil.byteToBoolean(generalInformationsBytes[OFFSET_IMMEDIATE_START]);
         skill = Skill.values()[generalInformationsBytes[OFFSET_SKILL]];
         lfsVersion = ProcessorUtil.bytesToString(generalInformationsBytes, OFFSET_LFS_VERSION, LENGTH_LFS_VERSION);
-        wind = Wind.values()[generalInformationsBytes[OFFSET_WIND]];
+        WeatherConditionProcessor weatherConditionProcessor = new WeatherConditionProcessor(generalInformationsBytes[OFFSET_WIND], generalInformationsBytes[OFFSET_WEATHER]);
+        weatherCondition = weatherConditionProcessor.getWeatherCondition();
     }
 
     public boolean isImmediateStart() {
@@ -54,8 +56,8 @@ public class MprBytesProcessor {
         return skill;
     }
 
-    public Wind getWind() {
-        return wind;
+    public WeatherCondition getWeatherCondition() {
+        return weatherCondition;
     }
 
     public String getLfsVersion() {

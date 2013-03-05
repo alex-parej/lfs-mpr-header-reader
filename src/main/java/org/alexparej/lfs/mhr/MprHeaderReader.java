@@ -45,7 +45,8 @@ public class MprHeaderReader {
         byte[][] resultBytes = mprHeaderBytesReader.getResult();
         MprBytesProcessor processor = new MprBytesProcessor(generalInformationsBytes, resultBytes);
         System.out.println(processor.isImmediateStart());
-        System.out.println(processor.getWind());
+        System.out.println(processor.getWeatherCondition().getWeatherCode());
+        System.out.println(processor.getWeatherCondition().getWind());
         System.out.println(processor.getSkill());
         System.out.println(processor.getLfsVersion());
     }
