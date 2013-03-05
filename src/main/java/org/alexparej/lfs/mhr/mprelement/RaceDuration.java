@@ -15,29 +15,30 @@
  */
 package org.alexparej.lfs.mhr.mprelement;
 
+import java.util.Date;
+
 /**
  *
  * @author Alex
  */
 public class RaceDuration {
 
-    private int startTime;
-    private boolean practice;
+    private Date startTime;
     private int laps;
     private int hours;
 
-    public RaceDuration(int startTime, boolean practice, int laps) {
+    public RaceDuration(Date startTime, int laps, int hours) {
         this.startTime = startTime;
-        this.practice = practice;
         this.laps = laps;
+        this.hours = hours;
     }
 
-    public int getStartTime() {
+    public Date getStartTime() {
         return startTime;
     }
 
     public boolean isPractice() {
-        return practice;
+        return laps == 0 && hours == 0;
     }
 
     public int getLaps() {

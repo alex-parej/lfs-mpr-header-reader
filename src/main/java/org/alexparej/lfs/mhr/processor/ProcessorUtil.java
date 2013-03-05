@@ -34,4 +34,8 @@ public class ProcessorUtil {
     public static String bytesToString(byte[] bytes, int offset, int length) {
         return bytesToString(Arrays.copyOfRange(bytes, offset, offset + length));
     }
+    
+    public static int byteToInt(byte b){
+        return b & 0xFF;
+    }
 }

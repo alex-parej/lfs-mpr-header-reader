@@ -54,6 +54,11 @@ public class MprHeaderReader {
         System.out.println(processor.getTrack().getName());
         System.out.println(processor.getTrack().getConfig());
         System.out.println(processor.getTrack().isReversed());
+        System.out.println("DURATION: ");
+        System.out.println(processor.getRaceDuration().getStartTime());
+        System.out.println(processor.getRaceDuration().getHours());
+        System.out.println(processor.getRaceDuration().getLaps());
+        System.out.println(processor.getRaceDuration().isPractice());
     }
 
     private void processGeneralInformations() {
