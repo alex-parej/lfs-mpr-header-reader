@@ -25,14 +25,12 @@ public class Track {
     private String name;
     private int config;
     private boolean reversed;
-    private WeatherCondition weatherCondition;
 
-    public Track(String shortName, String name, int config, boolean reversed, WeatherCondition weatherCondition) {
+    public Track(String shortName, String name, int config, boolean reversed) {
         this.shortName = shortName;
         this.name = name;
         this.config = config;
         this.reversed = reversed;
-        this.weatherCondition = weatherCondition;
     }
 
     public String getShortName() {
@@ -51,7 +49,4 @@ public class Track {
         return reversed;
     }
 
-    public WeatherCondition getWeatherCondition() {
-        return weatherCondition;
-    }
 }
