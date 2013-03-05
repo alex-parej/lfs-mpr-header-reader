@@ -15,9 +15,10 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
+import java.util.Arrays;
 import org.alexparej.lfs.mhr.mprelement.Skill;
+import org.alexparej.lfs.mhr.mprelement.Track;
 import org.alexparej.lfs.mhr.mprelement.WeatherCondition;
-import org.alexparej.lfs.mhr.mprelement.Wind;
 
 /**
  *
@@ -30,11 +31,18 @@ public class MprBytesProcessor {
     private static final int OFFSET_WIND = 22;
     private static final int OFFSET_LFS_VERSION = 24;
     private static final int OFFSET_WEATHER = 74;
+    private static final int OFFSET_SHORT_TRACK_NAME = 32;
+    private static final int OFFSET_TRACK_NAME = 40;
+    private static final int OFFSET_CONFIG = 72;
+    private static final int OFFSET_REVERSED = 73;
     private static final int LENGTH_LFS_VERSION = 8;
+    private static final int LENGTH_SHORT_TRACK_NAME = 4;
+    private static final int LENGTH_TRACK_NAME = 32;
     private boolean immediateStart;
     private String lfsVersion;
     private Skill skill;
     private WeatherCondition weatherCondition;
+    private Track track;
     private byte[] generalInformationsBytes;
     private byte[][] resultBytes;
 
@@ -46,6 +54,9 @@ public class MprBytesProcessor {
         lfsVersion = ProcessorUtil.bytesToString(generalInformationsBytes, OFFSET_LFS_VERSION, LENGTH_LFS_VERSION);
         WeatherConditionProcessor weatherConditionProcessor = new WeatherConditionProcessor(generalInformationsBytes[OFFSET_WIND], generalInformationsBytes[OFFSET_WEATHER]);
         weatherCondition = weatherConditionProcessor.getWeatherCondition();
+        TrackProcessor trackProcessor = new TrackProcessor(Arrays.copyOfRange(generalInformationsBytes, OFFSET_SHORT_TRACK_NAME, OFFSET_SHORT_TRACK_NAME+LENGTH_SHORT_TRACK_NAME), Arrays.copyOfRange(generalInformationsBytes, OFFSET_TRACK_NAME, OFFSET_TRACK_NAME+LENGTH_TRACK_NAME), generalInformationsBytes[OFFSET_CONFIG], generalInformationsBytes[OFFSET_REVERSED]);
+        track = trackProcessor.getTrack();
+        System.out.println("track: "+track);
     }
 
     public boolean isImmediateStart() {
@@ -63,4 +74,10 @@ public class MprBytesProcessor {
     public String getLfsVersion() {
         return lfsVersion;
     }
+
+    public Track getTrack() {
+        return track;
+    }
+    
+    
 }

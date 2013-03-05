@@ -49,6 +49,11 @@ public class MprHeaderReader {
         System.out.println(processor.getWeatherCondition().getWind());
         System.out.println(processor.getSkill());
         System.out.println(processor.getLfsVersion());
+        System.out.println("TRACK INFOS:");
+        System.out.println(processor.getTrack().getShortName());
+        System.out.println(processor.getTrack().getName());
+        System.out.println(processor.getTrack().getConfig());
+        System.out.println(processor.getTrack().isReversed());
     }
 
     private void processGeneralInformations() {
