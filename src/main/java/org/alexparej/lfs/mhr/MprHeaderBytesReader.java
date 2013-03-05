@@ -26,7 +26,7 @@ import java.util.Arrays;
  *
  * @author Alex
  */
-public final class MprHeaderReader {
+public final class MprHeaderBytesReader {
 
     private static final String LFSMPR = "LFSMPR";
     private static final int SIZE_GENERAL_INFOS = 80;
@@ -35,10 +35,10 @@ public final class MprHeaderReader {
     private byte generalInfos[] = new byte[SIZE_GENERAL_INFOS];
     private byte result[][];
 
-    private MprHeaderReader() {
+    private MprHeaderBytesReader() {
     }
 
-    public MprHeaderReader(File mprFile) throws FileNotFoundException, IOException, IllegalArgumentException {
+    public MprHeaderBytesReader(File mprFile) throws FileNotFoundException, IOException, IllegalArgumentException {
         BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(mprFile));
         readGeneralInfos(inputStream);
         if (!isValidMpr()) {
