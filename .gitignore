@@ -4,3 +4,5 @@ target/*
 *.jar
 *.war
 *.ear
+/lfs-mpr-header-reader-example-application/target/
+/lfs-mpr-header-reader/target/
