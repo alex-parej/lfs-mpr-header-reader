@@ -60,6 +60,7 @@ public class MprHeaderReader {
         System.out.println(processor.getRaceDuration().getLaps());
         System.out.println(processor.getRaceDuration().isPractice());
         System.out.println(processor.getRaceFlags());
+        System.out.println(processor.getAllowedCars());
     }
 
     private void processGeneralInformations() {

@@ -15,10 +15,9 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.EnumSet;
+import org.alexparej.lfs.mhr.mprelement.Car;
 import org.alexparej.lfs.mhr.mprelement.RaceDuration;
 import org.alexparej.lfs.mhr.mprelement.RaceFlag;
 import org.alexparej.lfs.mhr.mprelement.Skill;
@@ -32,6 +31,7 @@ import org.alexparej.lfs.mhr.mprelement.WeatherCondition;
 public class MprBytesProcessor {
 
     private static final int OFFSET_IMMEDIATE_START = 9;
+    private static final int OFFSET_ALLOWED_CARS = 12;
     private static final int OFFSET_RACE_FLAGS = 16;
     private static final int OFFSET_LAPS_BYTE = 20;
     private static final int OFFSET_SKILL = 21;
@@ -54,6 +54,7 @@ public class MprBytesProcessor {
     private Track track;
     private RaceDuration raceDuration;
     private EnumSet<RaceFlag> raceFlags;
+    private EnumSet<Car> allowedCars;
     private byte[] generalInformationsBytes;
     private byte[][] resultBytes;
 
@@ -71,6 +72,8 @@ public class MprBytesProcessor {
         raceDuration = raceDurationProcessor.getRaceDuration();
         RaceFlagsProcessor raceFlagsProcessor = new RaceFlagsProcessor(Arrays.copyOfRange(generalInformationsBytes, OFFSET_RACE_FLAGS, OFFSET_RACE_FLAGS + LENGTH_INTEGER));
         raceFlags = raceFlagsProcessor.getRaceFlags();
+        AllowedCarsProcessor allowedCarsProcessor = new AllowedCarsProcessor(Arrays.copyOfRange(generalInformationsBytes, OFFSET_ALLOWED_CARS, OFFSET_ALLOWED_CARS + LENGTH_INTEGER));
+        allowedCars = allowedCarsProcessor.getAllowedCars();
     }
 
     public boolean isImmediateStart() {
@@ -99,5 +102,9 @@ public class MprBytesProcessor {
 
     public EnumSet<RaceFlag> getRaceFlags() {
         return raceFlags;
+    }
+
+    public EnumSet<Car> getAllowedCars() {
+        return allowedCars;
     }
 }
