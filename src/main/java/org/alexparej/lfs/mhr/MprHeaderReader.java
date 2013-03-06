@@ -59,6 +59,7 @@ public class MprHeaderReader {
         System.out.println(processor.getRaceDuration().getHours());
         System.out.println(processor.getRaceDuration().getLaps());
         System.out.println(processor.getRaceDuration().isPractice());
+        System.out.println(processor.getRaceFlags());
     }
 
     private void processGeneralInformations() {
