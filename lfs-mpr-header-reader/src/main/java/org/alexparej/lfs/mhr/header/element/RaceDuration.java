@@ -13,41 +13,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.mprelement;
+package org.alexparej.lfs.mhr.header.element;
+
+import java.util.Date;
 
 /**
  *
  * @author Alex
  */
-public enum Car {
-     XFG(1),
-     XRG(2),
-     XRT(4),
-     RB4(8),
-     FXO(16),
-     LX4(32),
-     LX6(64),
-     MRT(128),
-     UF1(256),
-     RAC(512),
-     FZ5(1024),
-     FOX(2048),
-     XFR(4096),
-     UFR(8192),
-     F08(16384),
-     FXR(32768),
-     XRR(65536),
-     FZR(131072),
-     BF1(262144),
-     FBM(524288);
+public class RaceDuration {
 
-    int value;
+    private Date startTime;
+    private int laps;
+    private int hours;
 
-    private Car(int value) {
-        this.value = value;
+    public RaceDuration(Date startTime, int laps, int hours) {
+        this.startTime = startTime;
+        this.laps = laps;
+        this.hours = hours;
     }
 
-    public int getValue() {
-        return value;
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public boolean isPractice() {
+        return laps == 0 && hours == 0;
+    }
+
+    public int getLaps() {
+        return laps;
+    }
+
+    public int getHours() {
+        return hours;
     }
 }

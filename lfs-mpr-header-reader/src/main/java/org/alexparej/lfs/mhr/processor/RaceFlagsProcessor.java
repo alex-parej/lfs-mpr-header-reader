@@ -17,7 +17,7 @@ package org.alexparej.lfs.mhr.processor;
 
 import java.util.BitSet;
 import java.util.EnumSet;
-import org.alexparej.lfs.mhr.mprelement.RaceFlag;
+import org.alexparej.lfs.mhr.header.element.RaceFlag;
 
 /**
  *

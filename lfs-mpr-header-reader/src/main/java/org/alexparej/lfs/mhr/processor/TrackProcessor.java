@@ -15,7 +15,7 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
-import org.alexparej.lfs.mhr.mprelement.Track;
+import org.alexparej.lfs.mhr.header.element.Track;
 
 /**
  *

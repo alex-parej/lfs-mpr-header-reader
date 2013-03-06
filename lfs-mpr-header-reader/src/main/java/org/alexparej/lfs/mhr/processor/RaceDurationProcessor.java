@@ -18,7 +18,7 @@ package org.alexparej.lfs.mhr.processor;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Date;
-import org.alexparej.lfs.mhr.mprelement.RaceDuration;
+import org.alexparej.lfs.mhr.header.element.RaceDuration;
 
 /**
  *

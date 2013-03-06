@@ -17,12 +17,12 @@ package org.alexparej.lfs.mhr.processor;
 
 import java.util.Arrays;
 import java.util.EnumSet;
-import org.alexparej.lfs.mhr.mprelement.Car;
-import org.alexparej.lfs.mhr.mprelement.RaceDuration;
-import org.alexparej.lfs.mhr.mprelement.RaceFlag;
-import org.alexparej.lfs.mhr.mprelement.Skill;
-import org.alexparej.lfs.mhr.mprelement.Track;
-import org.alexparej.lfs.mhr.mprelement.WeatherCondition;
+import org.alexparej.lfs.mhr.header.element.Car;
+import org.alexparej.lfs.mhr.header.element.RaceDuration;
+import org.alexparej.lfs.mhr.header.element.RaceFlag;
+import org.alexparej.lfs.mhr.header.element.Skill;
+import org.alexparej.lfs.mhr.header.element.Track;
+import org.alexparej.lfs.mhr.header.element.WeatherCondition;
 
 /**
  *

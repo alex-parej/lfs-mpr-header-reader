@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr;
+package org.alexparej.lfs.mhr.reader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
-import org.alexparej.lfs.mhr.mprelement.Player;
-import org.alexparej.lfs.mhr.mprelement.RaceDuration;
-import org.alexparej.lfs.mhr.mprelement.Skill;
-import org.alexparej.lfs.mhr.mprelement.Track;
+import org.alexparej.lfs.mhr.header.element.Player;
+import org.alexparej.lfs.mhr.header.element.RaceDuration;
+import org.alexparej.lfs.mhr.header.element.Skill;
+import org.alexparej.lfs.mhr.header.element.Track;
 import org.alexparej.lfs.mhr.processor.MprBytesProcessor;
 
 /**

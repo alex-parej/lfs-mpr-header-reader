@@ -13,26 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.processor;
-
-import org.alexparej.lfs.mhr.header.element.WeatherCondition;
-import org.alexparej.lfs.mhr.header.element.Wind;
+package org.alexparej.lfs.mhr.header;
 
 /**
  *
  * @author Alex
  */
-public class WeatherConditionProcessor {
-
-    private WeatherCondition weatherCondition;
-
-    public WeatherConditionProcessor(byte windByte, byte weatherByte) {
-        Wind wind = Wind.values()[windByte];
-        int weatherCode = weatherByte;
-        weatherCondition = new WeatherCondition(wind, weatherCode);
-    }
-
-    public WeatherCondition getWeatherCondition() {
-        return weatherCondition;
-    }
+public class Header {
+    
 }

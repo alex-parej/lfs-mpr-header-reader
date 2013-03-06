@@ -13,39 +13,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.mprelement;
-
-import java.util.Date;
+package org.alexparej.lfs.mhr.header.element;
 
 /**
  *
  * @author Alex
  */
-public class RaceDuration {
+public class Track {
 
-    private Date startTime;
-    private int laps;
-    private int hours;
+    private String shortName;
+    private String name;
+    private int config;
+    private boolean reversed;
 
-    public RaceDuration(Date startTime, int laps, int hours) {
-        this.startTime = startTime;
-        this.laps = laps;
-        this.hours = hours;
+    public Track(String shortName, String name, int config, boolean reversed) {
+        this.shortName = shortName;
+        this.name = name;
+        this.config = config;
+        this.reversed = reversed;
     }
 
-    public Date getStartTime() {
-        return startTime;
+    public String getShortName() {
+        return shortName;
     }
 
-    public boolean isPractice() {
-        return laps == 0 && hours == 0;
+    public String getName() {
+        return name;
     }
 
-    public int getLaps() {
-        return laps;
+    public int getConfig() {
+        return config;
     }
 
-    public int getHours() {
-        return hours;
+    public boolean isReversed() {
+        return reversed;
     }
+
 }

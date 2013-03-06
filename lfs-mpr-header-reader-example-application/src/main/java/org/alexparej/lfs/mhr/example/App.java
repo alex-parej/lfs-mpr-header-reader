@@ -20,7 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.alexparej.lfs.mhr.MprHeaderReader;
+import org.alexparej.lfs.mhr.reader.MprHeaderReader;
 import org.alexparej.lfs.mhr.example.chooser.MprChooser;
 
 public class App {

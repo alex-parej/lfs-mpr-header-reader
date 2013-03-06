@@ -13,40 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.mprelement;
+package org.alexparej.lfs.mhr.header.element;
 
 /**
  *
  * @author Alex
  */
-public class Track {
+public enum Car {
+     XFG(1),
+     XRG(2),
+     XRT(4),
+     RB4(8),
+     FXO(16),
+     LX4(32),
+     LX6(64),
+     MRT(128),
+     UF1(256),
+     RAC(512),
+     FZ5(1024),
+     FOX(2048),
+     XFR(4096),
+     UFR(8192),
+     F08(16384),
+     FXR(32768),
+     XRR(65536),
+     FZR(131072),
+     BF1(262144),
+     FBM(524288);
 
-    private String shortName;
-    private String name;
-    private int config;
-    private boolean reversed;
+    int value;
 
-    public Track(String shortName, String name, int config, boolean reversed) {
-        this.shortName = shortName;
-        this.name = name;
-        this.config = config;
-        this.reversed = reversed;
+    private Car(int value) {
+        this.value = value;
     }
 
-    public String getShortName() {
-        return shortName;
+    public int getValue() {
+        return value;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getConfig() {
-        return config;
-    }
-
-    public boolean isReversed() {
-        return reversed;
-    }
-
 }

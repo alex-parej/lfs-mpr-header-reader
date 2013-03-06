@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr;
+package org.alexparej.lfs.mhr.reader;
 
 import java.io.BufferedInputStream;
 import java.io.File;
