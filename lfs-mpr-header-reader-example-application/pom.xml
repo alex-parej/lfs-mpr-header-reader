@@ -8,7 +8,22 @@
     <packaging>jar</packaging>
 
     <name>lfs-mpr-header-reader-example-application</name>
-    <url>http://maven.apache.org</url>
+    <description>Live for Speed Multiplayer file header reader example application</description>
+    <url>https://github.com/alex-parej/lfs-mpr-header-reader</url>
+    <inceptionYear>2013</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache 2</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Alex Paréj</name>
+            <email>alex.parej@gmail.com</email>
+        </developer>
+    </developers>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
