@@ -41,7 +41,7 @@ public class MprHeaderReader {
 
     public MprHeaderReader(File file) throws FileNotFoundException, IllegalArgumentException, IOException {
         MprHeaderBytesReader mprHeaderBytesReader = new MprHeaderBytesReader(file);
-        generalInformationsBytes = mprHeaderBytesReader.getGeneralInfos();
+        generalInformationsBytes = mprHeaderBytesReader.getReplayDescription();
         byte[][] resultBytes = mprHeaderBytesReader.getResult();
         MprBytesProcessor processor = new MprBytesProcessor(generalInformationsBytes, resultBytes);
         System.out.println(processor.isImmediateStart());
@@ -62,7 +62,7 @@ public class MprHeaderReader {
         System.out.println(processor.getRaceFlags());
         System.out.println(processor.getAllowedCars());
     }
-
+   
     private void processGeneralInformations() {
     }
 
