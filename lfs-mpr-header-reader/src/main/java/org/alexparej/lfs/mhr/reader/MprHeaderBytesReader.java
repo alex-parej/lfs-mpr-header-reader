@@ -42,7 +42,7 @@ public final class MprHeaderBytesReader {
         BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(mprFile));
         readGeneralInfos(inputStream);
         if (!isValidMpr()) {
-            throw new IllegalArgumentException("Not valid MPR!");
+            throw new IllegalArgumentException("Not a valid MPR file!");
         }
         readResult(inputStream);
         inputStream.close();
