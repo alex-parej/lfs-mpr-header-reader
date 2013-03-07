@@ -23,7 +23,7 @@ public enum InformationRecord implements Record{
 
     LFSMPR(0, Type.CHAR, 6),
     IMMEDIATE_START(9, Type.BYTE),
-    RULES(9, Type.INT),
+    RULES(12, Type.INT),
     FLAGS(16, Type.INT),
     LAPS_BYTE(20, Type.BYTE),
     SKILL(21, Type.BYTE),
@@ -34,7 +34,8 @@ public enum InformationRecord implements Record{
     START_TIME(36, Type.INT),
     TRACK_NAME(40, Type.CHAR, 32),
     CONFIG(72, Type.BYTE),
-    WEATHER(74, Type.BYTE);
+    WEATHER(74, Type.BYTE),
+    NUM_FINISHED(75, Type.BYTE);
     private int offset;
     private Type type;
     private int length;
