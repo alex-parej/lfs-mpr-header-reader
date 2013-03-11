@@ -25,7 +25,6 @@ import org.alexparej.lfs.mhr.header.element.RaceFlag;
 import org.alexparej.lfs.mhr.header.element.Skill;
 import org.alexparej.lfs.mhr.header.element.Track;
 import org.alexparej.lfs.mhr.header.element.WeatherCondition;
-import org.alexparej.lfs.mhr.header.element.Wind;
 import org.alexparej.lfs.mhr.header.record.HeaderRecord;
 import org.alexparej.lfs.mhr.header.creator.AllowedCarsCreator;
 import org.alexparej.lfs.mhr.header.creator.RaceDurationCreator;
@@ -48,7 +47,6 @@ public class MprHeaderReader {
         EnumSet<RaceFlag> raceFlags = RaceFlagsCreator.create(mprHeaderBytesReader.get(HeaderRecord.FLAGS));
         RaceDuration raceDuration = RaceDurationCreator.create(mprHeaderBytesReader.get(HeaderRecord.START_TIME), mprHeaderBytesReader.get(HeaderRecord.LAPS_BYTE)[0]);
         Skill skill = Skill.values()[ByteConverterUtil.byteToInt(mprHeaderBytesReader.get(HeaderRecord.SKILL)[0])];
-        Wind wind = Wind.values()[ByteConverterUtil.byteToInt(mprHeaderBytesReader.get(HeaderRecord.WIND)[0])];
         int playersStart = ByteConverterUtil.byteToInt(mprHeaderBytesReader.get(HeaderRecord.NUM_PLAYERS)[0]);
         String lfsVersion = ByteConverterUtil.bytesToString(mprHeaderBytesReader.get(HeaderRecord.LFS_VERSION));
         Track track = TrackCreator.create(mprHeaderBytesReader.get(HeaderRecord.SHORT_TRACK_NAME), mprHeaderBytesReader.get(HeaderRecord.TRACK_NAME), mprHeaderBytesReader.get(HeaderRecord.CONFIG)[0], mprHeaderBytesReader.get(HeaderRecord.REVERSED)[0]);

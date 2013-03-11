@@ -23,26 +23,30 @@ import java.util.EnumSet;
  */
 public class Header {
 
+    boolean immediateStart;
     private EnumSet<Car> allowedCars;
     private EnumSet<RaceFlag> raceFlags;
     private RaceDuration raceDuration;
     private Skill skill;
-    private Wind wind;
     private int playersStart;
     private String lfsVersion;
     private Track track;
     private WeatherCondition weatherCondition;
 
-    public Header(EnumSet<Car> allowedCars, EnumSet<RaceFlag> raceFlags, RaceDuration raceDuration, Skill skill, Wind wind, int playersStart, String lfsVersion, Track track, WeatherCondition weatherCondition) {
+    public Header(boolean immediateStart, EnumSet<Car> allowedCars, EnumSet<RaceFlag> raceFlags, RaceDuration raceDuration, Skill skill, int playersStart, String lfsVersion, Track track, WeatherCondition weatherCondition) {
+        this.immediateStart = immediateStart;
         this.allowedCars = allowedCars;
         this.raceFlags = raceFlags;
         this.raceDuration = raceDuration;
         this.skill = skill;
-        this.wind = wind;
         this.playersStart = playersStart;
         this.lfsVersion = lfsVersion;
         this.track = track;
         this.weatherCondition = weatherCondition;
+    }
+
+    public boolean isImmediateStart() {
+        return immediateStart;
     }
 
     public EnumSet<Car> getAllowedCars() {
@@ -59,10 +63,6 @@ public class Header {
 
     public Skill getSkill() {
         return skill;
-    }
-
-    public Wind getWind() {
-        return wind;
     }
 
     public int getPlayersStart() {
