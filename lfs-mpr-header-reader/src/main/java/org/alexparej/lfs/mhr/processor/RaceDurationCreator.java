@@ -27,6 +27,9 @@ import org.alexparej.lfs.mhr.reader.ByteConverterUtil;
  */
 public final class RaceDurationCreator {
 
+    private RaceDurationCreator() {
+    }
+
     private static int calculateLaps(int lapsByte) {
         if (!isPractice(lapsByte) && lapsByte <= 190) {
             if (lapsByte < 100) {
