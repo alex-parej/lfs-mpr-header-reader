@@ -19,7 +19,7 @@ package org.alexparej.lfs.mhr.header.record;
  *
  * @author Alex
  */
-public enum InformationRecord implements Record{
+public enum HeaderRecord implements Record{
 
     LFSMPR(0, Type.CHAR, 6),
     IMMEDIATE_START(9, Type.BYTE),
@@ -34,19 +34,20 @@ public enum InformationRecord implements Record{
     START_TIME(36, Type.INT),
     TRACK_NAME(40, Type.CHAR, 32),
     CONFIG(72, Type.BYTE),
+    REVERSED(73, Type.BYTE),
     WEATHER(74, Type.BYTE),
     NUM_FINISHED(75, Type.BYTE);
     private int offset;
     private Type type;
     private int length;
 
-    private InformationRecord(int offset, Type type) {
+    private HeaderRecord(int offset, Type type) {
         this.offset = offset;
         this.type = type;
         this.length = 1;
     }
 
-    private InformationRecord(int offset, Type type, int length) {
+    private HeaderRecord(int offset, Type type, int length) {
         this.offset = offset;
         this.type = type;
         this.length = length;

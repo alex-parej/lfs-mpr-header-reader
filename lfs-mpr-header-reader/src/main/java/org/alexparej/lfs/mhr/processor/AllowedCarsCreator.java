@@ -17,26 +17,25 @@ package org.alexparej.lfs.mhr.processor;
 
 import java.util.BitSet;
 import java.util.EnumSet;
-import org.alexparej.lfs.mhr.header.element.RaceFlag;
+import org.alexparej.lfs.mhr.header.element.Car;
 
 /**
  *
  * @author Alex
  */
-public class RaceFlagsProcessor {
+public final class AllowedCarsCreator {
 
-    private EnumSet<RaceFlag> raceFlags = EnumSet.noneOf(RaceFlag.class);
-
-    public RaceFlagsProcessor(byte[] flagsBytes) {
-        BitSet bitSet = BitSet.valueOf(flagsBytes);
-        for (RaceFlag raceFlag : RaceFlag.values()) {
-            if (bitSet.get(Integer.numberOfTrailingZeros(raceFlag.getValue()))) {
-                raceFlags.add(raceFlag);
-            }
-        }
+    private AllowedCarsCreator() {
     }
 
-    public EnumSet<RaceFlag> getRaceFlags() {
-        return raceFlags;
+    public static EnumSet<Car> create(byte[] allowedCarsBytes) {
+        EnumSet<Car> allowedCars = EnumSet.noneOf(Car.class);
+        BitSet bitSet = BitSet.valueOf(allowedCarsBytes);
+        for (Car car : Car.values()) {
+            if (bitSet.get(Integer.numberOfTrailingZeros(car.getValue()))) {
+                allowedCars.add(car);
+            }
+        }
+        return allowedCars;
     }
 }

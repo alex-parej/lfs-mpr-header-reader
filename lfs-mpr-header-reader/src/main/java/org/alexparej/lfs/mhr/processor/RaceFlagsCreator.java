@@ -15,24 +15,27 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
-import org.alexparej.lfs.mhr.header.element.WeatherCondition;
-import org.alexparej.lfs.mhr.header.element.Wind;
+import java.util.BitSet;
+import java.util.EnumSet;
+import org.alexparej.lfs.mhr.header.element.RaceFlag;
 
 /**
  *
  * @author Alex
  */
-public class WeatherConditionProcessor {
+public final class RaceFlagsCreator {
 
-    private WeatherCondition weatherCondition;
-
-    public WeatherConditionProcessor(byte windByte, byte weatherByte) {
-        Wind wind = Wind.values()[windByte];
-        int weatherCode = weatherByte;
-        weatherCondition = new WeatherCondition(wind, weatherCode);
+    private RaceFlagsCreator() {
     }
 
-    public WeatherCondition getWeatherCondition() {
-        return weatherCondition;
+    public static EnumSet<RaceFlag> create(byte[] flagsBytes) {
+        EnumSet<RaceFlag> raceFlags = EnumSet.noneOf(RaceFlag.class);
+        BitSet bitSet = BitSet.valueOf(flagsBytes);
+        for (RaceFlag raceFlag : RaceFlag.values()) {
+            if (bitSet.get(Integer.numberOfTrailingZeros(raceFlag.getValue()))) {
+                raceFlags.add(raceFlag);
+            }
+        }
+        return raceFlags;
     }
 }

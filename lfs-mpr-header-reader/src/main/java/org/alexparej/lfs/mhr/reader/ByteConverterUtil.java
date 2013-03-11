@@ -40,4 +40,8 @@ public final class ByteConverterUtil {
         byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
         return byteBuffer.getInt();
     }
+
+    public static boolean byteToBoolean(byte b) {
+        return b != 0;
+    }
 }

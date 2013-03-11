@@ -15,28 +15,22 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
-import java.util.BitSet;
-import java.util.EnumSet;
-import org.alexparej.lfs.mhr.header.element.Car;
+import org.alexparej.lfs.mhr.header.element.Track;
 
 /**
  *
  * @author Alex
  */
-public class AllowedCarsProcessor {
+public final class TrackCreator {
 
-    private EnumSet<Car> allowedCars = EnumSet.noneOf(Car.class);
-
-    public AllowedCarsProcessor(byte[] allowedCarsBytes) {
-        BitSet bitSet = BitSet.valueOf(allowedCarsBytes);
-        for (Car car : Car.values()) {
-            if (bitSet.get(Integer.numberOfTrailingZeros(car.getValue()))) {
-                allowedCars.add(car);
-            }
-        }
+    private TrackCreator() {
     }
 
-    public EnumSet<Car> getAllowedCars() {
-        return allowedCars;
+    public static Track create(byte[] shortNameBytes, byte[] nameBytes, byte configByte, byte reversedByte) {
+        String shortName = ProcessorUtil.bytesToString(shortNameBytes);
+        String name = ProcessorUtil.bytesToString(nameBytes);
+        int config = ProcessorUtil.byteToInt(configByte);
+        boolean reversed = ProcessorUtil.byteToBoolean(reversedByte);
+        return new Track(shortName, name, config, reversed);
     }
 }

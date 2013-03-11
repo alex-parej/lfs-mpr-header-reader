@@ -24,19 +24,9 @@ import org.alexparej.lfs.mhr.header.element.RaceDuration;
  *
  * @author Alex
  */
-public class RaceDurationProcessor {
+public final class RaceDurationCreator {
 
-    private RaceDuration raceDuration;
-
-    public RaceDurationProcessor(byte[] startTimeBytes, byte lapsByte) {
-        ByteBuffer startTimeByteBuffer = ByteBuffer.wrap(startTimeBytes);
-        startTimeByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
-        long startTime = startTimeByteBuffer.getInt() * 1000l;
-        int lapsByteInt = ProcessorUtil.byteToInt(lapsByte);
-        raceDuration = new RaceDuration(new Date(startTime), calculateLaps(lapsByteInt), calculateHours(lapsByteInt));
-    }
-
-    private int calculateLaps(int lapsByte) {
+    private static int calculateLaps(int lapsByte) {
         if (!isPractice(lapsByte) && lapsByte <= 190) {
             if (lapsByte < 100) {
                 return lapsByte;
@@ -47,18 +37,22 @@ public class RaceDurationProcessor {
         return 0;
     }
 
-    private int calculateHours(int lapsByte) {
+    private static int calculateHours(int lapsByte) {
         if (!isPractice(lapsByte) && lapsByte > 190) {
             return lapsByte - 190;
         }
         return 0;
     }
 
-    private boolean isPractice(int lapsByte) {
+    private static boolean isPractice(int lapsByte) {
         return lapsByte == 0;
     }
 
-    public RaceDuration getRaceDuration() {
-        return raceDuration;
+    public static RaceDuration create(byte[] startTimeBytes, byte lapsByte) {
+        ByteBuffer startTimeByteBuffer = ByteBuffer.wrap(startTimeBytes);
+        startTimeByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+        long startTime = startTimeByteBuffer.getInt() * 1000l;
+        int lapsByteInt = ProcessorUtil.byteToInt(lapsByte);
+        return new RaceDuration(new Date(startTime), calculateLaps(lapsByteInt), calculateHours(lapsByteInt));
     }
 }

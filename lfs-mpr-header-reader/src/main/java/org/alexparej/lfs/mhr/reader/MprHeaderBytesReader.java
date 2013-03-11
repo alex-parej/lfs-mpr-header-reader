@@ -21,9 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.Map;
-import org.alexparej.lfs.mhr.header.record.InformationRecord;
+import org.alexparej.lfs.mhr.header.record.HeaderRecord;
 
 /**
  *
@@ -70,23 +68,8 @@ public final class MprHeaderBytesReader {
         }
     }
 
-    public byte[] getReplayDescription() {
-        return Arrays.copyOf(replayDescription, replayDescription.length);
-    }
-
-    public Map<InformationRecord, byte[]> getReplayDescriptionInMapByRecords() {
-        Map<InformationRecord, byte[]> informationsMap = new EnumMap<InformationRecord, byte[]>(InformationRecord.class);
-        for (InformationRecord record : InformationRecord.values()) {
-            informationsMap.put(record, getReplayDescriptionByRecord(record));
-        }
-        return informationsMap;
-    }
-
-    private byte[] getReplayDescriptionByRecord(InformationRecord record) {
+    public byte[] get(HeaderRecord record) {
         return Arrays.copyOfRange(replayDescription, record.getOffset(), record.getOffset() + (record.getLength() * record.getType().getSize()));
     }
-
-    public byte[][] getResult() {
-        return Arrays.copyOf(result, result.length);
-    }
+    
 }

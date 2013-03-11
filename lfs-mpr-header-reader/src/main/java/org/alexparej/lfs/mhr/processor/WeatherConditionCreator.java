@@ -15,24 +15,21 @@
  */
 package org.alexparej.lfs.mhr.processor;
 
-import org.alexparej.lfs.mhr.header.element.Track;
+import org.alexparej.lfs.mhr.header.element.WeatherCondition;
+import org.alexparej.lfs.mhr.header.element.Wind;
+import org.alexparej.lfs.mhr.reader.ByteConverterUtil;
 
 /**
  *
  * @author Alex
  */
-public class TrackProcessor {
+public final class WeatherConditionCreator {
 
-    private Track track;
-
-    public TrackProcessor(byte[] shortNameBytes, byte[] nameBytes, byte configByte, byte reversedByte) {
-        String shortName = ProcessorUtil.bytesToString(shortNameBytes);
-        String name = ProcessorUtil.bytesToString(nameBytes);
-        boolean reversed = ProcessorUtil.byteToBoolean(reversedByte);
-        track = new Track(shortName, name, configByte, reversed);
+    private WeatherConditionCreator() {
     }
 
-    public Track getTrack() {
-        return track;
+    public static WeatherCondition create(byte windByte, byte weatherByte) {
+        Wind wind = Wind.values()[ByteConverterUtil.byteToInt(windByte)];
+        return new WeatherCondition(wind, ByteConverterUtil.byteToInt(weatherByte));
     }
 }

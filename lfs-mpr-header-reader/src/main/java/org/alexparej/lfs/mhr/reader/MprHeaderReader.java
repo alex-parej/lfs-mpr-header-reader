@@ -18,12 +18,20 @@ package org.alexparej.lfs.mhr.reader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.List;
-import org.alexparej.lfs.mhr.header.element.Player;
+import java.util.EnumSet;
+import org.alexparej.lfs.mhr.header.element.Car;
 import org.alexparej.lfs.mhr.header.element.RaceDuration;
+import org.alexparej.lfs.mhr.header.element.RaceFlag;
 import org.alexparej.lfs.mhr.header.element.Skill;
 import org.alexparej.lfs.mhr.header.element.Track;
-import org.alexparej.lfs.mhr.processor.MprBytesProcessor;
+import org.alexparej.lfs.mhr.header.element.WeatherCondition;
+import org.alexparej.lfs.mhr.header.element.Wind;
+import org.alexparej.lfs.mhr.header.record.HeaderRecord;
+import org.alexparej.lfs.mhr.processor.AllowedCarsCreator;
+import org.alexparej.lfs.mhr.processor.RaceDurationCreator;
+import org.alexparej.lfs.mhr.processor.RaceFlagsCreator;
+import org.alexparej.lfs.mhr.processor.TrackCreator;
+import org.alexparej.lfs.mhr.processor.WeatherConditionCreator;
 
 /**
  *
@@ -31,62 +39,22 @@ import org.alexparej.lfs.mhr.processor.MprBytesProcessor;
  */
 public class MprHeaderReader {
 
-    private boolean immediateStart;
-    private Skill skill;
-    private String lfsVersion;
-    private Track track;
-    private RaceDuration raceDuration;
-    private List<Player> result;
-    byte[] generalInformationsBytes;
+    private final MprHeaderBytesReader mprHeaderBytesReader;
 
     public MprHeaderReader(File file) throws FileNotFoundException, IllegalArgumentException, IOException {
-        MprHeaderBytesReader mprHeaderBytesReader = new MprHeaderBytesReader(file);
-        generalInformationsBytes = mprHeaderBytesReader.getReplayDescription();
-        byte[][] resultBytes = mprHeaderBytesReader.getResult();
-        MprBytesProcessor processor = new MprBytesProcessor(generalInformationsBytes, resultBytes);
-        System.out.println(processor.isImmediateStart());
-        System.out.println(processor.getWeatherCondition().getWeatherCode());
-        System.out.println(processor.getWeatherCondition().getWind());
-        System.out.println(processor.getSkill());
-        System.out.println(processor.getLfsVersion());
-        System.out.println("TRACK INFOS:");
-        System.out.println(processor.getTrack().getShortName());
-        System.out.println(processor.getTrack().getName());
-        System.out.println(processor.getTrack().getConfig());
-        System.out.println(processor.getTrack().isReversed());
-        System.out.println("DURATION: ");
-        System.out.println(processor.getRaceDuration().getStartTime());
-        System.out.println(processor.getRaceDuration().getHours());
-        System.out.println(processor.getRaceDuration().getLaps());
-        System.out.println(processor.getRaceDuration().isPractice());
-        System.out.println(processor.getRaceFlags());
-        System.out.println(processor.getAllowedCars());
+        mprHeaderBytesReader = new MprHeaderBytesReader(file);
+        boolean immediateStart = ByteConverterUtil.byteToBoolean(mprHeaderBytesReader.get(HeaderRecord.IMMEDIATE_START)[0]);
+        EnumSet<Car> allowedCars = AllowedCarsCreator.create(mprHeaderBytesReader.get(HeaderRecord.RULES));
+        EnumSet<RaceFlag> raceFlags = RaceFlagsCreator.create(mprHeaderBytesReader.get(HeaderRecord.FLAGS));
+        RaceDuration raceDuration = RaceDurationCreator.create(mprHeaderBytesReader.get(HeaderRecord.START_TIME), mprHeaderBytesReader.get(HeaderRecord.LAPS_BYTE)[0]);
+        Skill skill = Skill.values()[ByteConverterUtil.byteToInt(mprHeaderBytesReader.get(HeaderRecord.SKILL)[0])];
+        Wind wind = Wind.values()[ByteConverterUtil.byteToInt(mprHeaderBytesReader.get(HeaderRecord.WIND)[0])];
+        int playersStart = ByteConverterUtil.byteToInt(mprHeaderBytesReader.get(HeaderRecord.NUM_PLAYERS)[0]);
+        String lfsVersion = ByteConverterUtil.bytesToString(mprHeaderBytesReader.get(HeaderRecord.LFS_VERSION));
+        Track track = TrackCreator.create(mprHeaderBytesReader.get(HeaderRecord.SHORT_TRACK_NAME), mprHeaderBytesReader.get(HeaderRecord.TRACK_NAME), mprHeaderBytesReader.get(HeaderRecord.CONFIG)[0], mprHeaderBytesReader.get(HeaderRecord.REVERSED)[0]);
+        WeatherCondition weatherCondition = WeatherConditionCreator.create(mprHeaderBytesReader.get(HeaderRecord.WIND)[0], mprHeaderBytesReader.get(HeaderRecord.WEATHER)[0]);
     }
-   
+
     private void processGeneralInformations() {
-    }
-
-    public boolean isImmediateStart() {
-        return immediateStart;
-    }
-
-    public Skill getSkill() {
-        return skill;
-    }
-
-    public String getLfsVersion() {
-        return lfsVersion;
-    }
-
-    public Track getTrack() {
-        return track;
-    }
-
-    public RaceDuration getRaceDuration() {
-        return raceDuration;
-    }
-
-    public List<Player> getResult() {
-        return result;
     }
 }

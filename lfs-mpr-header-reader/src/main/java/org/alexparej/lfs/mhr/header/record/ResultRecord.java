@@ -19,7 +19,7 @@ package org.alexparej.lfs.mhr.header.record;
  *
  * @author Alex
  */
-public enum PlayerRecord implements Record {
+public enum ResultRecord implements Record {
 
     PLAYER_NAME(0, Type.CHAR, 24),
     NUMBER_PLATE(24, Type.CHAR, 8),
@@ -39,13 +39,13 @@ public enum PlayerRecord implements Record {
     private Type type;
     private int length;
 
-    private PlayerRecord(int offset, Type type) {
+    private ResultRecord(int offset, Type type) {
         this.offset = offset;
         this.type = type;
         this.length = 1;
     }
 
-    private PlayerRecord(int offset, Type type, int length) {
+    private ResultRecord(int offset, Type type, int length) {
         this.offset = offset;
         this.type = type;
         this.length = length;
