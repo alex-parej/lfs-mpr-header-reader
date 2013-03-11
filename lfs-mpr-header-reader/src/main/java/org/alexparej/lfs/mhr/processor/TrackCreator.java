@@ -16,6 +16,7 @@
 package org.alexparej.lfs.mhr.processor;
 
 import org.alexparej.lfs.mhr.header.element.Track;
+import org.alexparej.lfs.mhr.reader.ByteConverterUtil;
 
 /**
  *
@@ -27,10 +28,10 @@ public final class TrackCreator {
     }
 
     public static Track create(byte[] shortNameBytes, byte[] nameBytes, byte configByte, byte reversedByte) {
-        String shortName = ProcessorUtil.bytesToString(shortNameBytes);
-        String name = ProcessorUtil.bytesToString(nameBytes);
-        int config = ProcessorUtil.byteToInt(configByte);
-        boolean reversed = ProcessorUtil.byteToBoolean(reversedByte);
+        String shortName = ByteConverterUtil.bytesToString(shortNameBytes);
+        String name = ByteConverterUtil.bytesToString(nameBytes);
+        int config = ByteConverterUtil.byteToInt(configByte);
+        boolean reversed = ByteConverterUtil.byteToBoolean(reversedByte);
         return new Track(shortName, name, config, reversed);
     }
 }

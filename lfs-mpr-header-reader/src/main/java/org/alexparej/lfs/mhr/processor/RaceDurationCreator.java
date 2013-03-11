@@ -19,6 +19,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.Date;
 import org.alexparej.lfs.mhr.header.element.RaceDuration;
+import org.alexparej.lfs.mhr.reader.ByteConverterUtil;
 
 /**
  *
@@ -52,7 +53,7 @@ public final class RaceDurationCreator {
         ByteBuffer startTimeByteBuffer = ByteBuffer.wrap(startTimeBytes);
         startTimeByteBuffer.order(ByteOrder.LITTLE_ENDIAN);
         long startTime = startTimeByteBuffer.getInt() * 1000l;
-        int lapsByteInt = ProcessorUtil.byteToInt(lapsByte);
+        int lapsByteInt = ByteConverterUtil.byteToInt(lapsByte);
         return new RaceDuration(new Date(startTime), calculateLaps(lapsByteInt), calculateHours(lapsByteInt));
     }
 }
