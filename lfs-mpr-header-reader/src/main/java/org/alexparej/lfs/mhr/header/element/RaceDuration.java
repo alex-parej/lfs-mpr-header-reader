@@ -48,4 +48,9 @@ public class RaceDuration {
     public int getHours() {
         return hours;
     }
+
+    @Override
+    public String toString() {
+        return "RaceDuration{" + "startTime=" + startTime + ", laps=" + laps + ", hours=" + hours + '}';
+    }
 }

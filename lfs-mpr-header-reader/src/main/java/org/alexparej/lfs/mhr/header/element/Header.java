@@ -80,4 +80,14 @@ public class Header {
     public WeatherCondition getWeatherCondition() {
         return weatherCondition;
     }
+
+    @Override
+    public String toString() {
+        return "Header{"+System.lineSeparator()+"immediateStart=" + immediateStart+","
+                +System.lineSeparator()+"allowedCars=" + allowedCars+","+System.lineSeparator()+"raceFlags=" + raceFlags+","
+                +System.lineSeparator()+"raceDuration=" + raceDuration+","+System.lineSeparator()+"skill=" + skill +","
+                + System.lineSeparator()+"playersStart=" + playersStart +","+System.lineSeparator()+"lfsVersion=" + lfsVersion + ","
+                +System.lineSeparator()+"track=" + track + ","+System.lineSeparator()+"weatherCondition=" + weatherCondition 
+                +System.lineSeparator()+ "}" ;
+    }
 }

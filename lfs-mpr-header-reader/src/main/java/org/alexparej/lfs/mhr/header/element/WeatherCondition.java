@@ -36,4 +36,9 @@ public class WeatherCondition {
     public int getWeatherCode() {
         return weatherCode;
     }
+
+    @Override
+    public String toString() {
+        return "WeatherCondition{" + "wind=" + wind + ", weatherCode=" + weatherCode + '}';
+    }
 }

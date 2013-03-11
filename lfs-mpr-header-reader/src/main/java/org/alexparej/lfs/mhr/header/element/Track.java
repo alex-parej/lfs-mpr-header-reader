@@ -49,4 +49,8 @@ public class Track {
         return reversed;
     }
 
+    @Override
+    public String toString() {
+        return "Track{" + "shortName=" + shortName + ", name=" + name + ", config=" + config + ", reversed=" + reversed + '}';
+    }
 }
