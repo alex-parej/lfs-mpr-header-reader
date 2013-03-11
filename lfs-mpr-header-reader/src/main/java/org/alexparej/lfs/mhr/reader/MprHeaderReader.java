@@ -27,11 +27,11 @@ import org.alexparej.lfs.mhr.header.element.Track;
 import org.alexparej.lfs.mhr.header.element.WeatherCondition;
 import org.alexparej.lfs.mhr.header.element.Wind;
 import org.alexparej.lfs.mhr.header.record.HeaderRecord;
-import org.alexparej.lfs.mhr.processor.AllowedCarsCreator;
-import org.alexparej.lfs.mhr.processor.RaceDurationCreator;
-import org.alexparej.lfs.mhr.processor.RaceFlagsCreator;
-import org.alexparej.lfs.mhr.processor.TrackCreator;
-import org.alexparej.lfs.mhr.processor.WeatherConditionCreator;
+import org.alexparej.lfs.mhr.header.creator.AllowedCarsCreator;
+import org.alexparej.lfs.mhr.header.creator.RaceDurationCreator;
+import org.alexparej.lfs.mhr.header.creator.RaceFlagsCreator;
+import org.alexparej.lfs.mhr.header.creator.TrackCreator;
+import org.alexparej.lfs.mhr.header.creator.WeatherConditionCreator;
 
 /**
  *

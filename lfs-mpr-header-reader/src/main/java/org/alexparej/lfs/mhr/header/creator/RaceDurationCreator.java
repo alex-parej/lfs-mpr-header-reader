@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.alexparej.lfs.mhr.processor;
+package org.alexparej.lfs.mhr.header.creator;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
