@@ -31,6 +31,7 @@ import org.alexparej.lfs.mhr.header.creator.RaceDurationCreator;
 import org.alexparej.lfs.mhr.header.creator.RaceFlagsCreator;
 import org.alexparej.lfs.mhr.header.creator.TrackCreator;
 import org.alexparej.lfs.mhr.header.creator.WeatherConditionCreator;
+import org.alexparej.lfs.mhr.header.element.Header;
 
 /**
  *
@@ -39,6 +40,7 @@ import org.alexparej.lfs.mhr.header.creator.WeatherConditionCreator;
 public class MprHeaderReader {
 
     private final MprHeaderBytesReader mprHeaderBytesReader;
+    private final Header header;
 
     public MprHeaderReader(File file) throws FileNotFoundException, IllegalArgumentException, IOException {
         mprHeaderBytesReader = new MprHeaderBytesReader(file);
@@ -51,8 +53,10 @@ public class MprHeaderReader {
         String lfsVersion = ByteConverterUtil.bytesToString(mprHeaderBytesReader.get(HeaderRecord.LFS_VERSION));
         Track track = TrackCreator.create(mprHeaderBytesReader.get(HeaderRecord.SHORT_TRACK_NAME), mprHeaderBytesReader.get(HeaderRecord.TRACK_NAME), mprHeaderBytesReader.get(HeaderRecord.CONFIG)[0], mprHeaderBytesReader.get(HeaderRecord.REVERSED)[0]);
         WeatherCondition weatherCondition = WeatherConditionCreator.create(mprHeaderBytesReader.get(HeaderRecord.WIND)[0], mprHeaderBytesReader.get(HeaderRecord.WEATHER)[0]);
+        header = new Header(immediateStart, allowedCars, raceFlags, raceDuration, skill, playersStart, lfsVersion, track, weatherCondition);
     }
 
-    private void processGeneralInformations() {
+    public Header getHeader() {
+        return header;
     }
 }
